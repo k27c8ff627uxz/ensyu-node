@@ -1,0 +1,5 @@
+service: ensyu2
+provider: aws
+functions:
+  hello:
+    handler: src/myfunc.main
