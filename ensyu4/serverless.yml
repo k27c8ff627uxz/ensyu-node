@@ -1,0 +1,10 @@
+service: ensyu4
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+  
+
+functions:
+  hello:
+    handler: src/myfunc.handler
