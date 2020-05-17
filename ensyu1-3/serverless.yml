@@ -1,4 +1,4 @@
-service: ensyu4
+service: ensyu1-3
 provider: aws
 
 plugins:

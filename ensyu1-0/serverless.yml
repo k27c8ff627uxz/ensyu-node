@@ -1,4 +1,4 @@
-service: ensyu2
+service: ensyu1-0
 provider: aws
 functions:
   hello:

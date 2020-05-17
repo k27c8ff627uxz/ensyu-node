@@ -1,4 +1,4 @@
-service: ensyu1
+service: ensyu0-1
 provider:
   name: aws
   region: ap-northeast-1
