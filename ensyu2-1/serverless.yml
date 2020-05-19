@@ -1,0 +1,14 @@
+service: ensyu2-1
+provider:
+  name: aws
+  environment:
+    SOME_VAR: hoge
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    environment:
+      MY_ENV: hello, world!!
