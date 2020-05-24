@@ -1,8 +1,5 @@
 service: ensyu2-2
-provider:
-  name: aws
-  environment:
-    SOME_VAR: hoge
+provider: aws
 
 plugins:
   - serverless-plugin-typescript
