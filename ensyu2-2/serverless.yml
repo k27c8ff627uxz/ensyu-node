@@ -11,4 +11,4 @@ functions:
   hello:
     handler: src/myfunc.handler
     environment:
-      MY_ENV: Custom env is "${self:custom.CUSTOM_ENV}"
+      MY_ENV: ${self:custom.CUSTOM_ENV}
