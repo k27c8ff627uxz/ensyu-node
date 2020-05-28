@@ -1,0 +1,21 @@
+service: ensyu2-8
+provider:
+  name: aws
+  stage: ${self:custom.stage}
+  region: ${self:custom.profile.${self:custom.stage}.region}
+
+plugins:
+  - serverless-plugin-typescript
+
+custom:
+  stage: ${opt:stage, "dev"}
+  profile:
+    dev: ${file(./dev.yml)}
+    product: ${file(./product.yml)}
+
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    environment:
+      message: ${self:custom.profile.${self:custom.stage}.message}
