@@ -1,5 +1,7 @@
 service: ensyu1-9
-provider: aws
+provider:
+  name: aws
+  timeout: 10
 
 plugins:
   - serverless-plugin-typescript
@@ -8,4 +10,4 @@ plugins:
 functions:
   hello:
     handler: src/myfunc.handler
-    timeout: 10
+
