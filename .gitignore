@@ -7,3 +7,6 @@
 
 # Webpack directories
 */*/.webpack
+
+# vscode
+./.vscode
