@@ -1,7 +1,5 @@
 service: ensyu3-0
-provider:
-  name: aws
-
+provider: aws
 
 plugins:
   - serverless-step-functions
