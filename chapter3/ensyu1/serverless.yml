@@ -1,0 +1,18 @@
+service: ensyu3-1
+provider: aws
+
+
+plugins:
+  - serverless-step-functions
+
+stepFunctions:
+  stateMachines:
+    myStepFunction:
+      name: MyStepFunc1
+      definition:
+        StartAt: HelloWorld
+        States: 
+          HelloWorld: 
+            Type: Pass
+            Result: Hello, World!
+            End: true
