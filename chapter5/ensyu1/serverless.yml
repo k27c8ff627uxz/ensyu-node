@@ -1,4 +1,4 @@
-service: ensyu4-1
+service: ensyu5-1
 provider: aws
 
 plugins:
@@ -6,7 +6,7 @@ plugins:
 
 custom:
   name:
-    bucket: k27c8ff627uxz-bucket4-1
+    bucket: k27c8ff627uxz-bucket5-1
 
 resources:
   Resources:
