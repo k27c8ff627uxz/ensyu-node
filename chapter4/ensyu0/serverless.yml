@@ -3,7 +3,7 @@ provider: aws
 
 custom:
   name:
-    bucket: k27c8ff627uxzbucket
+    bucket: k27c8ff627uxz-bucket-4-0
 
 resources:
   Resources:
