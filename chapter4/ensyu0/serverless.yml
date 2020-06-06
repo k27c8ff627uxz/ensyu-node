@@ -1,0 +1,13 @@
+service: ensyu4-0
+provider: aws
+
+custom:
+  name:
+    bucket: k27c8ff627uxzbucket
+
+resources:
+  Resources:
+    Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.name.bucket}
