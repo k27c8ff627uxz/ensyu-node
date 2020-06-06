@@ -1,29 +1,13 @@
-service: ensyu5-0
+service: ensyu4-0
 provider: aws
+
+custom:
+  name:
+    bucket: k27c8ff627uxz-bucket-4-0
 
 resources:
   Resources:
-    MyDynamoDB:
-      Type: 'AWS::DynamoDB::Table'
+    Bucket:
+      Type: AWS::S3::Bucket
       Properties:
-        TableName: MyTable
-        AttributeDefinitions:
-          -
-            AttributeName: id
-            AttributeType: N
-          -
-            AttributeName: key
-            AttributeType: S
-          -
-            AttributeName: value
-            AttributeType: S
-        KeySchema:
-          -
-            AttributeName: id
-            KeyType: HASH
-          -
-            AttributeName: key
-            KeyType: RANGE
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+        BucketName: ${self:custom.name.bucket}
