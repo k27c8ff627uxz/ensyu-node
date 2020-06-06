@@ -1,4 +1,4 @@
-service: ensyu4-0
+service: ensyu5-0
 provider: aws
 
 resources:
