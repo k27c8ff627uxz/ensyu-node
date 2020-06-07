@@ -1,4 +1,4 @@
-import { Context, Callback, S3Event, S3EventRecord } from "aws-lambda";
+import { Context, Callback, S3Event } from "aws-lambda";
 
 interface Event { }
 
