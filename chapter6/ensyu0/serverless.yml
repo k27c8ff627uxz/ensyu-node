@@ -3,7 +3,7 @@ provider: aws
 
 resources:
   Resources:
-    MyDynamoDB:
+    MyDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         TableName: MyTable
@@ -11,19 +11,10 @@ resources:
           -
             AttributeName: id
             AttributeType: N
-          -
-            AttributeName: key
-            AttributeType: S
-          -
-            AttributeName: value
-            AttributeType: S
         KeySchema:
           -
             AttributeName: id
             KeyType: HASH
-          -
-            AttributeName: key
-            KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
