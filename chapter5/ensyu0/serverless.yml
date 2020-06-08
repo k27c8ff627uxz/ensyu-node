@@ -7,7 +7,8 @@ custom:
 
 resources:
   Resources:
-    Bucket:
+    MyBucket:
       Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
       Properties:
         BucketName: ${self:custom.name.bucket}
