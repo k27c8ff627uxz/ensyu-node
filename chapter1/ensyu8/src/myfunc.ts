@@ -1,5 +1,5 @@
 import { Context, Callback } from "aws-lambda";
-import { Exp, Operation } from "./exp";
+import { Exp } from "./exp";
 
 export function main(exp: Exp, context: Context, callback: Callback) {
     try {
@@ -15,13 +15,15 @@ function parseExp(exp: Exp): number {
         return exp
     } else {
         switch (exp.op) {
-            case Operation.add:
+            case "number":
+                return exp.value;
+            case "add":
                 return parseExp(exp.arg1) + parseExp(exp.arg2);
-            case Operation.minus:
+            case "minus":
                 return -parseExp(exp.arg);
-            case Operation.mult:
+            case "mult":
                 return parseExp(exp.arg1) * parseExp(exp.arg2);
-            case Operation.div:
+            case "div":
                 return 1 / parseExp(exp.arg);
         }
     }
