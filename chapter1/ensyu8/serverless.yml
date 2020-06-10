@@ -3,8 +3,7 @@ provider: aws
 
 plugins:
   - serverless-plugin-typescript
-  
 
 functions:
-  isPrime:
+  Expression:
     handler: src/myfunc.main
