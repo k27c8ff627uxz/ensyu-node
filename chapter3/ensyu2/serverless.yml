@@ -14,7 +14,7 @@ functions:
 stepFunctions:
   stateMachines:
     myStepFunction:
-      name: MyStepFunc2
+      name: MyStepFunc3-2
       definition:
         StartAt: HelloWorld
         States: 

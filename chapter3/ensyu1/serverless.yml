@@ -8,7 +8,7 @@ plugins:
 stepFunctions:
   stateMachines:
     myStepFunction:
-      name: MyStepFunc1
+      name: MyStepFunc3-1
       definition:
         StartAt: HelloWorld
         States: 
