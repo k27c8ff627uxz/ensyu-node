@@ -1,0 +1,36 @@
+service: ensyu6-1
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+resources:
+  Resources:
+    MyDynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ensyu6-1-table
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: N
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
+
+functions:
+  dynamoChange:
+    handler: src/myfunc.handler
+    events:
+      - stream:
+          type: dynamodb
+          arn: 
+            Fn::GetAtt:
+              - MyDynamoDBTable
+              - StreamArn
