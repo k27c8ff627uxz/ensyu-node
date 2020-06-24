@@ -9,7 +9,7 @@ export function handler(event: APIGatewayEvent, context: Context, callback: APIG
             headers: {
                  "content-type": "text/html",
             },
-            body: "Hello, World!"
+            body: "POST called"
         }
     )
 }
