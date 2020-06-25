@@ -1,0 +1,13 @@
+service: ensyu4-3
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    events:
+      - http:
+          path: "{path1}/{path2}/hello"
+          method: post
