@@ -1,0 +1,17 @@
+service: ensyu4-5
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+# Run 'curl http://xxx/xxx/hello -H "Authorization: allow"'
+functions:
+  auth:
+    handler: src/auth.handler
+  hello:
+    handler: src/myfunc.handler
+    events:
+      - http:
+          path: hello
+          method: get
+          authorizer: auth
