@@ -1,0 +1,26 @@
+service: ensyu2-9
+provider:
+  name: aws
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - sls:AssumeRole
+        - lambda:InvokeFunction
+      Resource:
+        - "*"
+
+plugins:
+  - serverless-plugin-typescript
+
+custom:
+  invokedLambdaName: invokedLambda2-9
+
+functions:
+  mainLambda:
+    handler: src/main.handler
+    environment:
+      invokedLambdaName: ${self:custom.invokedLambdaName}
+  invokedLambda:
+    name: ${self:custom.invokedLambdaName}
+    handler: src/invoked.handler
+
