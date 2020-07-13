@@ -4,7 +4,6 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - sls:AssumeRole
         - lambda:InvokeFunction
       Resource:
         - "*"
