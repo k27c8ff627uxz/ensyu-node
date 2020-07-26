@@ -3,6 +3,8 @@
 */*/jspm_packages
 */*/.build
 */*/package-lock.json
+utils/node_modules
+utils/package-lock.json
 
 # Serverless directories
 */*/.serverless
