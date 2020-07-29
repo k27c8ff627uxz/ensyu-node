@@ -22,6 +22,7 @@ function parseParameter(body: string | null ): Parameter | undefined {
 }
 
 export function handler(event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback) {
+    console.log("event: %j", event);
     const param = parseParameter(event.body);
     if (param === undefined) {
         callback(null, {

@@ -65,16 +65,16 @@ functions:
       - http:
           path: signupverify
           method: post
-  initialAuth:
+
+  login:
     handler: src/initializeAuth.handler
     environment:
       UserPoolClientId:
         Ref: MyUserPoolClient
     events:
       - http:
-          path: initializeauth
+          path: login
           method: post
-
   apiTest:
     handler: src/apiTest.handler
     events:

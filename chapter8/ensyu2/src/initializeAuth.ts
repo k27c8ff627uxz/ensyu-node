@@ -1,4 +1,4 @@
-import { Context, APIGatewayEvent, APIGatewayProxyCallback } from "aws-lambda";
+import { Context, APIGatewayEvent, APIGatewayProxyCallback, APIGatewayProxyResult } from "aws-lambda";
 import { CognitoIdentityServiceProvider } from "aws-sdk";
 
 interface Parameter {
@@ -22,6 +22,7 @@ function parseParameter(body: string | null ): Parameter | undefined {
 }
 
 export async function handler(event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback) {
+    console.log("event: %j", event);
     const param = parseParameter(event.body);
     if (param === undefined) {
         callback(null, {
@@ -31,28 +32,47 @@ export async function handler(event: APIGatewayEvent, context: Context, callback
         return;
     }
 
+    const response = await createResponse(param.username, param.password);
+    callback(null, response);
+}
+
+async function createResponse(username: string, password: string): Promise<APIGatewayProxyResult> {
     const cognito = new CognitoIdentityServiceProvider();
+
     try {
         const response = await cognito.initiateAuth({
             ClientId: process.env['UserPoolClientId'],
             AuthFlow: 'USER_PASSWORD_AUTH',
-            AuthParameters: { USERNAME: param.username, PASSWORD: param.password },
+            AuthParameters: { USERNAME: username, PASSWORD: password },
         } as CognitoIdentityServiceProvider.Types.InitiateAuthRequest).promise();
         if  (response.AuthenticationResult === undefined) {
-                callback(null, {
-                    statusCode: 400,
-                    body: `This account cannot be used in this sample: ${JSON.stringify(response)}`,
-                });
-                return;
-            }
-        callback(null, {
+            return {
+                statusCode: 400,
+                body: `This account cannot be used in this sample: ${JSON.stringify(response)}`,
+            };
+        }
+        console.log(JSON.stringify(response));
+        return {
             statusCode: 200,
-            body: JSON.stringify(response.AuthenticationResult),
-        });
+            body: `TOKEN=${response.AuthenticationResult.IdToken!}`,
+        };
     } catch(err) {
-        callback(null, {
+        console.log("error: %j", err);
+        if (err?.code === 'NotAuthorizedException') {
+            return {
+                statusCode: 500,
+                body: JSON.stringify(err),
+            }
+        } else if (err?.code === 'UserNotConfirmedException') {
+            return {
+                statusCode: 500,
+                body: JSON.stringify(err),
+            }
+        }
+        return {
             statusCode: 400,
             body: JSON.stringify(err),
-        });
+        };
     }
 }
+
