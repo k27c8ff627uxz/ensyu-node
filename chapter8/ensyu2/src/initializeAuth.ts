@@ -58,19 +58,18 @@ async function createResponse(username: string, password: string): Promise<APIGa
         };
     } catch(err) {
         console.log("error: %j", err);
-        if (err?.code === 'NotAuthorizedException') {
+        if (
+            err?.code === 'NotAuthorizedException' ||
+            err?.code === 'UserNotConfirmedException'||
+            err?.code === 'UserNotFoundException'
+        ) {
             return {
-                statusCode: 500,
-                body: JSON.stringify(err),
-            }
-        } else if (err?.code === 'UserNotConfirmedException') {
-            return {
-                statusCode: 500,
+                statusCode: 400,
                 body: JSON.stringify(err),
             }
         }
         return {
-            statusCode: 400,
+            statusCode: 500,
             body: JSON.stringify(err),
         };
     }

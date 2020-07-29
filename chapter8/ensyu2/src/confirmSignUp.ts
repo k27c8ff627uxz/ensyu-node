@@ -37,15 +37,15 @@ export function handler(event: APIGatewayEvent, context: Context, callback: APIG
         Username: param.email,
         ConfirmationCode: param.code,
     } as CognitoIdentityServiceProvider.Types.ConfirmSignUpRequest).promise()
-    .then((res) => {
-        callback(null, {
-            statusCode: 200,
-            body: JSON.stringify(res),
+        .then((res) => {
+            callback(null, {
+                statusCode: 200,
+                body: JSON.stringify(res),
+            });
+        }).catch((err) => {
+            callback(null, {
+                statusCode: 500,
+                body: JSON.stringify(err),
+            });
         });
-    }).catch((err) => {
-        callback(null, {
-            statusCode: 500,
-            body: JSON.stringify(err),
-        });
-    });
 }
