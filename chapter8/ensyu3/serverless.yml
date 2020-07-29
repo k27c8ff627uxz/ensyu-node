@@ -1,0 +1,119 @@
+service: ensyu8-3
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+custom:
+  authorizeName: MyAuthorization
+  ChallengeMetaData: MY_CHALLENGE_META_DATA
+
+resources:
+  Resources:
+    CognitoUserPoolMyUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: MyUserPool8-3
+        Policies:
+          PasswordPolicy:
+            RequireUppercase: false
+            RequireSymbols: false
+            RequireNumbers: false
+            MinimumLength: 6
+        # I don't know how to confirm user without following settings
+        AutoVerifiedAttributes:
+          - email
+        UsernameAttributes:
+          - email
+    MyUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: MyUserPoolClient8-3
+        ExplicitAuthFlows:
+          - ALLOW_REFRESH_TOKEN_AUTH
+          - ALLOW_USER_PASSWORD_AUTH
+          - ALLOW_CUSTOM_AUTH
+        UserPoolId:
+          Ref: CognitoUserPoolMyUserPool
+    MyApiGatewayAuthorizer: 
+      Type: AWS::ApiGateway::Authorizer
+      Properties: 
+        Name: MyCognitoAuthorizer8-3
+        IdentitySource: method.request.header.${self:custom.authorizeName}
+        RestApiId: 
+          Ref: ApiGatewayRestApi
+        Type: COGNITO_USER_POOLS
+        ProviderARNs: 
+          - Fn::GetAtt:
+              - CognitoUserPoolMyUserPool
+              - Arn
+
+functions:
+  signUp:
+    handler: src/signUp.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: signup
+          method: post
+  confirmSignUp:
+    handler: src/confirmSignUp.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: signupverify
+          method: post
+
+  authChallengeDefine:
+    handler: src/authChallengeDefine.handler
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: DefineAuthChallenge
+  authChallengeCreate:
+    handler: src/authChallengeCreate.handler
+    environment:
+      ChallengeMetaData: ${self:custom.ChallengeMetaData}
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: CreateAuthChallenge
+  authChallengeVerify:
+    handler: src/authChallengeVerify.handler
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: VerifyAuthChallengeResponse
+
+  getQuestion:
+    handler: src/challenge.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: question
+          method: post
+  answerQuestion:
+    handler: src/verify.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: answer
+          method: post
+  apiTest:
+    handler: src/apiTest.handler
+    events:
+      - http:
+          path: apiTest
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId:
+              Ref: MyApiGatewayAuthorizer
