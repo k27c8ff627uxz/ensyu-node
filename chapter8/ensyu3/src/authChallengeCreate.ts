@@ -16,7 +16,7 @@ function createResponse(event: CognitoUserPoolTriggerEvent): Response {
     
         return {
             publicChallengeParameters: { challenge: `Answer the value of square of ${num}` },
-            privateChallengeParameters: { answer: `${num * num}`},
+            privateChallengeParameters: { question: `${num}`},
             challengeMetadata: `${process.env['ChallengeMetaData']}-${event.request.session!.length}`,
         };
     }
