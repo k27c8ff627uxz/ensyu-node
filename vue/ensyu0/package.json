@@ -1,5 +1,4 @@
 {
-    "name": "k27c8-vue-minimal",
     "version": "1.0.0",
     "scripts": {
         "serve": "vue-cli-service serve",
