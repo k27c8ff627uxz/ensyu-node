@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
+import style from '../styles/MyStrong.module.scss';
 
 export default class extends Component {
     render() {
-        return (<span>
-            {this.props.children}
-            <style jsx>{`
-                span {
-                    margin: 0;
-                    color: red;
-                    font-weight: 700;
-                }
-            `}</style>
+        return (<span className={style.main}>
+            <span>{this.props.children}</span>
         </span>);
     }
 }

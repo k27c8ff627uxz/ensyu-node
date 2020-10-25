@@ -11,7 +11,6 @@ export const getStaticProps = async () => {
 
 export default ({html}) => {
     return (
-//        <div>aa</div>
         <div>
         <JsxParser components={{MyStrong}} jsx={html} />
         </div>
