@@ -1,4 +1,9 @@
 # package directories
+*/node_modules
+*/jspm_packages
+*/.build
+*/package-lock.json
+
 */*/node_modules
 */*/jspm_packages
 */*/.build
@@ -7,3 +12,6 @@
 # ejected project
 */*/android
 */*/ios
+
+*/android
+*/ios
