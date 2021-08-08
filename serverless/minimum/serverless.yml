@@ -1,0 +1,14 @@
+service: serverless-minimum
+provider:
+  name: google
+  credentials: ${env:GCP_CREDENTIALS_FILE}
+  project: ${env:GCP_PROJECT_ID}
+
+plugins:
+  - serverless-google-cloudfunctions
+
+functions:
+  first:
+    handler: helloSlsGET
+    events:
+      - http: path
