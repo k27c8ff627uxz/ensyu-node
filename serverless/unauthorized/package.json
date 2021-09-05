@@ -1,0 +1,14 @@
+{
+  "name": "serverless_unauthorized",
+  "scripts": {
+    "deploy": "sls deploy",
+    "remove": "sls remove"
+  },
+  "dependencies": {
+    "serverless": "^2.52.1",
+    "serverless-plugin-scripts": "^1.0.2"
+  },
+  "devDependencies": {
+    "serverless-google-cloudfunctions": "^4.2.0"
+  }
+}

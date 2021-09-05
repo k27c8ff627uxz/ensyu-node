@@ -1,0 +1,40 @@
+service: serverless-unauthorized
+provider:
+  name: google
+  credentials: ${env:GCP_CREDENTIALS_FILE}
+  project: ${env:GCP_PROJECT_ID}
+  stage: test
+  region: asia-northeast1
+
+plugins:
+  - serverless-google-cloudfunctions
+  - serverless-plugin-scripts
+
+custom:
+  environment:
+    functions: publicFunc1 publicFunc2
+  scripts:
+    commands:
+      make-public: gcloud functions add-iam-policy-binding ${self:service}-${self:provider.stage}-${opt:function, "YOUR-DEFAULT-FUNCTION-NAME"} --member="allUsers" --role="roles/cloudfunctions.invoker" --project=${self:provider.project} --region=${self:provider.region} | xargs echo 
+    hooks:
+      'after:deploy:deploy': echo ${self:custom.environment.functions} | xargs -t -n1 -I{} npx sls make-public --function={}
+
+functions:
+  publicFunc1:
+    handler: helloGET
+    environment:
+      MESSAGE: "This is Public 1."
+    events:
+      - http: path
+  publicFunc2:
+    handler: helloGET
+    environment:
+      MESSAGE: "This is Public 2."
+    events:
+      - http: path
+  privateFunc:
+    handler: helloGET
+    environment:
+      MESSAGE: "This is Private."
+    events:
+      - http: path
