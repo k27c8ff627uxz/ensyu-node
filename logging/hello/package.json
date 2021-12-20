@@ -1,0 +1,17 @@
+{
+  "name": "helloLog",
+  "main": "build/index.js",
+  "scripts": {
+    "compile": "tsc",
+    "deploy": "gcloud functions deploy helloLog --trigger-http --runtime nodejs16",
+    "delete": "gcloud functions delete helloLog"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^1.9.0",
+    "@google-cloud/logging": "^9.6.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "typescript": "^4.3.5"
+  }
+}
