@@ -1,0 +1,10 @@
+service: ensyu1-7
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+  
+
+functions:
+  isPrime:
+    handler: src/myfunc.main

@@ -1,0 +1,13 @@
+service: ensy4-1
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    events:
+      - http:
+          path: hello
+          method: get

@@ -1,0 +1,87 @@
+service: ensyu8-2
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+custom:
+  authorizeName: MyAuthorization
+
+resources:
+  Resources:
+    CognitoUserPoolMyUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: MyUserPool8-2
+        Policies:
+          PasswordPolicy:
+            RequireUppercase: false
+            RequireSymbols: false
+            RequireNumbers: false
+            MinimumLength: 6
+        # I don't know how to confirm user without following settings
+        AutoVerifiedAttributes:
+          - email
+        UsernameAttributes:
+          - email
+    MyUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: MyUserPoolClient8-2
+        ExplicitAuthFlows:
+          - ALLOW_REFRESH_TOKEN_AUTH
+          - ALLOW_USER_PASSWORD_AUTH
+        UserPoolId:
+          Ref: CognitoUserPoolMyUserPool
+    MyApiGatewayAuthorizer: 
+      Type: AWS::ApiGateway::Authorizer
+      Properties: 
+        Name: MyCognitoAuthorizer8-2
+        IdentitySource: method.request.header.${self:custom.authorizeName}
+        RestApiId: 
+          Ref: ApiGatewayRestApi
+        Type: COGNITO_USER_POOLS
+        ProviderARNs: 
+          - Fn::GetAtt:
+              - CognitoUserPoolMyUserPool
+              - Arn
+
+functions:
+  signUp:
+    handler: src/signUp.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: signup
+          method: post
+  confirmSignUp:
+    handler: src/confirmSignUp.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: signupverify
+          method: post
+
+  login:
+    handler: src/initializeAuth.handler
+    environment:
+      UserPoolClientId:
+        Ref: MyUserPoolClient
+    events:
+      - http:
+          path: login
+          method: post
+  apiTest:
+    handler: src/apiTest.handler
+    events:
+      - http:
+          path: apiTest
+          method: get
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId:
+              Ref: MyApiGatewayAuthorizer

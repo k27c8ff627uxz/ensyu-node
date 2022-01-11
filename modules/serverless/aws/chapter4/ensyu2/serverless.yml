@@ -1,0 +1,31 @@
+service: ensyu4-2
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  GETAPI:
+    handler: src/get.handler
+    events:
+      - http:
+          path: hello
+          method: get
+  POSTAPI:
+    handler: src/post.handler
+    events:
+      - http:
+          path: hello
+          method: post
+  PUTAPI:
+    handler: src/put.handler
+    events:
+      - http:
+          path: hello
+          method: put
+  DELETEAPI:
+    handler: src/delete.handler
+    events:
+      - http:
+          path: hello
+          method: delete

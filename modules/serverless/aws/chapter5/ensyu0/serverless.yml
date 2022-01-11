@@ -1,0 +1,14 @@
+service: ensyu5-0
+provider: aws
+
+custom:
+  name:
+    bucket: k27c8ff627uxz-bucket-5-0
+
+resources:
+  Resources:
+    MyBucket:
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: ${self:custom.name.bucket}

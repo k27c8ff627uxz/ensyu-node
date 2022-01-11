@@ -1,0 +1,26 @@
+service: ensyu5-1
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+custom:
+  name:
+    bucket: k27c8ff627uxz-bucket5-1
+
+resources:
+  Resources:
+    MyBucket:
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: ${self:custom.name.bucket}
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    events:
+      - s3:
+          bucket: ${self:custom.name.bucket}
+          event: s3:ObjectCreated:*
+          existing: true

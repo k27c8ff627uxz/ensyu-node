@@ -1,0 +1,9 @@
+service: ensyu8-0
+provider: aws
+
+resources:
+  Resources:
+    UserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: MyUserPool8-0

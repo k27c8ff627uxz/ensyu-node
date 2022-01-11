@@ -1,0 +1,14 @@
+service: ensyu2-2
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+custom:
+  CUSTOM_ENV: hello, world!!
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    environment:
+      MY_ENV: ${self:custom.CUSTOM_ENV}

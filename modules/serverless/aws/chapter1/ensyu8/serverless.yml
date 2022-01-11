@@ -1,0 +1,9 @@
+service: ensyu1-8
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  Expression:
+    handler: src/myfunc.main

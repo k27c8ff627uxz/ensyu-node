@@ -1,0 +1,11 @@
+service: ensyu1-11
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+  
+
+functions:
+  hello:
+    name: MyLambda
+    handler: src/myfunc.handler

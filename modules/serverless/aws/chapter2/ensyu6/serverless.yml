@@ -1,0 +1,11 @@
+service: ensyu2-6
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    environment:
+      MY_OPT: ${opt:myopt, "default"}

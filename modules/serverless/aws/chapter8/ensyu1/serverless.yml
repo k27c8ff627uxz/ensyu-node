@@ -1,0 +1,26 @@
+service: ensyu8-1
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+resources:
+  Resources:
+    CognitoUserPoolMyUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: MyUserPool8-1
+        Policies:
+          PasswordPolicy:
+            RequireUppercase: false
+            RequireSymbols: false
+            RequireNumbers: false
+            MinimumLength: 6
+
+functions:
+  preSignUp:
+    handler: src/preSignUp.handler
+    events:
+      - cognitoUserPool:
+          pool: MyUserPool
+          trigger: PreSignUp

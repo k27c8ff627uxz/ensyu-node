@@ -1,0 +1,12 @@
+service: ensyu2-3
+provider: aws
+
+plugins:
+  - serverless-plugin-typescript
+
+functions:
+  hello:
+    handler: src/myfunc.handler
+    environment:
+      REGION: ${opt:region}
+      STAGE: ${opt:stage}

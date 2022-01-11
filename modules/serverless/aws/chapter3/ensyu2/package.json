@@ -1,0 +1,12 @@
+{
+    "name": "k27c8ff627uxz-serverless-ensyu3-2",
+    "version": "1.0.0",
+    "author": "k27c8ff627uxz",
+    "dependencies": {
+        "@types/aws-lambda": "^8.10.51",
+        "serverless-plugin-typescript": "^1.1.9",
+        "serverless-pseudo-parameters": "^2.5.0",
+        "serverless-step-functions": "^2.19.0",
+        "typescript": "^3.9.2"
+    }
+}
