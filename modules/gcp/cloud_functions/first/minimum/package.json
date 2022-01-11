@@ -1,0 +1,7 @@
+{
+  "name": "minimum",
+  "scripts": {
+    "deploy": "gcloud functions deploy helloGET --trigger-http --runtime nodejs14 --allow-unauthenticated",
+    "delete": "gcloud functions delete helloGET"
+  }
+}

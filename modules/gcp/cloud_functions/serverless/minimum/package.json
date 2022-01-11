@@ -1,0 +1,13 @@
+{
+  "name": "serverless_minimum",
+  "scripts": {
+    "deploy": "sls deploy",
+    "remove": "sls remove"
+  },
+  "dependencies": {
+    "serverless": "^2.52.1"
+  },
+  "devDependencies": {
+    "serverless-google-cloudfunctions": "^4.2.0"
+  }
+}

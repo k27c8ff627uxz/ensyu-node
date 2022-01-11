@@ -1,0 +1,15 @@
+service: serverless-minimum-ts
+provider:
+  name: google
+  credentials: ${env:GCP_CREDENTIALS_FILE}
+  project: ${env:GCP_PROJECT_ID}
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-google-cloudfunctions
+
+functions:
+  first_ts:
+    handler: helloSlsGETts
+    events:
+      - http: path
