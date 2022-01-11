@@ -1,0 +1,13 @@
+{
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "nuxt": "^2.14.6",
+        "raw-loader": "^4.0.1",
+        "v-runtime-template": "^1.10.0"
+    }
+}

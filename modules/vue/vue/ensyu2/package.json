@@ -1,0 +1,11 @@
+{
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build"
+    },
+    "dependencies": {
+        "@vue/cli-service-global": "^4.5.6",
+        "@vue/compiler-sfc": "^3.0.0",
+        "vue": "^3.0.0-0"
+    }
+}
