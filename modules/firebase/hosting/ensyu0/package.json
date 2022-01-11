@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "login": "firebase login",
+    "logout": "firebase logout",
+    "deploy": "firebase deploy --project"
+  },
+  "dependencies": {
+    "firebase-tools": "^8.18.0"
+  }
+}
