@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "command": "mymod-command"
+  },
+  "devDependencies": {
+    "ts-node": "^10.4.0"
+  }
+}
