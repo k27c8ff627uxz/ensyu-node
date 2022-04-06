@@ -1,0 +1,21 @@
+{
+  "name": "monaca-template-minimum",
+  "scripts": {
+    "monaca:preview": "npm run dev & npm run watch",
+    "monaca:transpile": "npm run build",
+    "monaca:debug": "npm run watch",
+    "dev": "webpack serve --open",
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "debug": "monaca debug",
+    "remote-build": "monaca remote build --browser"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.0"
+  },
+  "dependencies": {
+    "monaca": "^4.2.0"
+  }
+}
