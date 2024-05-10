@@ -1,0 +1,16 @@
+{
+  "name": "test-by-postgress",
+  "scripts": {
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "add-data": "ts-node add_data.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.1",
+    "prisma": "^5.12.1"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
