@@ -1,0 +1,6 @@
+Query Sample:
+```
+query {
+  info
+}
+```
