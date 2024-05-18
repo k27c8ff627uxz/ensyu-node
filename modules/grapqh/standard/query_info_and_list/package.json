@@ -1,0 +1,10 @@
+{
+  "name": "query_info_and_list",
+  "scripts": {
+    "start": "ts-node src/server.ts"
+  },
+  "dependencies": {
+    "apollo-server": "^3.13.0",
+    "ts-node": "^10.9.2"
+  }
+}
