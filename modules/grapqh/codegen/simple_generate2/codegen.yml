@@ -1,0 +1,18 @@
+overwrite: true
+config:
+  maybeValue: T | undefined
+  enumsAsTypes: true
+  withComponent: false
+  withHooks: true
+  withHOC: false
+  reactApolloVersion: 3
+  preResolveTypes: true
+  addDocBlocks: false
+schema: "src/schema.graphql"
+generates:
+  dist/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - named-operations-object
