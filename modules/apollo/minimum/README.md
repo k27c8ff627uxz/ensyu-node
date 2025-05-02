@@ -1,0 +1,8 @@
+## Example
+
+Operation:
+```
+query {
+  hello
+}
+```
