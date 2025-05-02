@@ -1,0 +1,15 @@
+{
+  "name": "apollo-query-and-mutation",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "graphql:codegen": "graphql-codegen --config codegen.yml"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/typescript-resolvers": "^4.5.0",
+    "tsx": "^4.19.4"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.12.0"
+  }
+}

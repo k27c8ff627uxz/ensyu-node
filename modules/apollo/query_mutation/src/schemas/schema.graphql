@@ -1,0 +1,8 @@
+type Query {
+    hello: String!,
+    square(num: Int!): Int!,
+}
+
+type Mutation {
+    setHello(name: String!): String!
+}

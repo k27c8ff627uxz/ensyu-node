@@ -1,0 +1,8 @@
+schema: "./src/**/*.graphql"
+generates:
+  "src/gql/":
+    preset: "client"
+    plugins:
+      - "typescript-resolvers"
+
+
